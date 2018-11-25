@@ -239,7 +239,7 @@ We can change the legend in a graphic using the `guides()` function.  This will 
 
 When you do need to put a legend on your visual, it's good to have this kind of control to minimize how obtrusive the legend is.
 
----?image=presentation/assets/background/theme-park.jpg&size=cover&opacity=15
+---
 
 ### Built-In Themes
 
@@ -257,11 +257,11 @@ ggplot2 has four built-in themes:  `theme_grey()` (the default), `theme_bw()`, `
 
 ### GGThemes
 
-The ggthemes package includes a number of pre-built themes to match certain magazine and newspaper standards.  Some of my favorites include `theme_economist()`, `theme_wsj()`, `theme_fivethirtyeight()`, and `theme_few()`.
+The ggthemes package includes a number of pre-built themes.  Some of my favorites include `theme_economist()`, `theme_wsj()`, `theme_fivethirtyeight()`, and `theme_few()`.
 
 ![The 538 theme](presentation/assets/image/Theme538.png)
 
----
+---?image=presentation/assets/background/theme-park.jpg&size=cover&opacity=15
 
 ### Custom Themes
 
