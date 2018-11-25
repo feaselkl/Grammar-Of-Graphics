@@ -86,7 +86,7 @@ My goals in this talk:
 5. Themes and Legends
 6. Facets
 
----
+---?image=presentation/assets/background/philosophy.jpg&size=cover&opacity=15
 
 ### Introducing the Grammar
 
