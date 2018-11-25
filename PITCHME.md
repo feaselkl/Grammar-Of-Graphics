@@ -49,9 +49,15 @@ What I expect you to know:
 
 ### Level Setting
 
-By the end of today's talk, we will be able to build an image with:
+By the end of today's talk, we will be able to build the following image:
 
 ![A plot of wealth versus longevity by country](presentation/assets/image/WealthAndLongevity.png)
+
+---
+
+### Level Setting
+
+![A plot of wealth versus longevity by country](presentation/assets/image/WealthAndLongevitySmall.png)
 
 * Multi-colored scatter plot & regression line
 * Title & subtitle, log axis, source ref, legend
@@ -86,9 +92,7 @@ My goals in this talk:
 
 Leland Wilkinson wrote The Grammar of Graphics in 1999 (<a href="https://www.springer.com/us/book/9780387245447">2nd edition</a> in 2005). 
 
-Why is this important?  Hadley Wickham explains:
-
-@quote["A grammar provides a strong foundation for understanding a diverse range of graphics. A grammar may also help guide us on what a well-formed or correct graphic looks like, but there will still be many grammatically correct but nonsensical graphics. This is easy to see by analogy to the English language: good grammar is just the first step in creating a good sentence."]
+A grammar of graphics, like a language's grammar, gives us an idea of what is syntactically correct--even if not every graphic is semantically correct.
 
 ---?image=presentation/assets/background/lego.jpg&size=cover&opacity=15
 
@@ -112,7 +116,7 @@ Breaking it down slightly differently:
 * The data itself, and a **mapping** made up aesthetics like x axis, y axis, color, fill color, and so on.
 * The **geometric object** (aka, **geom**) we want to draw, like histogram or line chart.
 * **Scales** and **coordinates**.
-* **Data labels** and <strong>annotations**.
+* **Data labels** and **annotations**.
 * **Facets**, that is, splitting into multiple graphs.
 
 ---?image=presentation/assets/background/lego-town.jpg&size=cover&opacity=15
@@ -167,7 +171,7 @@ The grammar of graphics is all about **composition**:  you can have multiple geo
 5. Themes and Legends
 6. Facets
 
----?image=presentation/assets/background/demo.jpg&size=cover&opacity=15
+---?image=presentation/assets/background/scale.jpg&size=cover&opacity=15
 
 ### Scales
 
@@ -175,7 +179,7 @@ By default, an axis is scaled linearly.  You can manually rescale the data (for 
 
 Aside from scaling the axis values, you can also use different features like color, transparency level, and size as scalars given your data.
 
----?image=presentation/assets/background/globe.jpg&size=cover&opacity=15
+---?image=presentation/assets/background/globe.jpg&size=cover&opacity=25
 
 ### Coordinates
 
@@ -279,7 +283,7 @@ You can even build your own themes if you have corporate or editorial standards,
 5. Themes and Legends
 6. **Facets**
 
----
+---?image=presentation/assets/background/facets.jpg&size=cover&opacity=15
 
 ### Facets
 
