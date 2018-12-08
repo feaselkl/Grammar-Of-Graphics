@@ -36,7 +36,7 @@
 </div>
 @snapend
 
----?image=presentation/assets/background/sound-mixer.jpg&size=cover&opacity=15
+---?image=presentation/assets/background/sound-mixer.jpg&size=cover&opacity=20
 
 ### Level Setting
 
@@ -63,7 +63,7 @@ By the end of today's talk, we will be able to build the following image:
 * Title & subtitle, log axis, source ref, legend
 * Callout box with text and single labeled point
 
----?image=presentation/assets/background/motivation.jpg&size=cover&opacity=15
+---?image=presentation/assets/background/motivation.jpg&size=cover&opacity=20
 
 ### Motivation
 
@@ -86,7 +86,7 @@ My goals in this talk:
 5. Themes and Legends
 6. Facets
 
----?image=presentation/assets/background/philosophy.jpg&size=cover&opacity=15
+---?image=presentation/assets/background/philosophy.jpg&size=cover&opacity=20
 
 ### Introducing the Grammar
 
@@ -94,7 +94,7 @@ Leland Wilkinson wrote The Grammar of Graphics in 1999 (<a href="https://www.spr
 
 A grammar of graphics, like a language's grammar, gives us an idea of what is syntactically correct--even if not every graphic is semantically correct.
 
----?image=presentation/assets/background/lego.jpg&size=cover&opacity=15
+---?image=presentation/assets/background/lego.jpg&size=cover&opacity=20
 
 ### Introducing the Grammar
 
@@ -108,7 +108,7 @@ This lets us use a relatively small number of components to create an indefinite
 
 ![A visual representation of the different components ](presentation/assets/image/ggplot-grammar-of-graphics-stackpng.png)
 
----?image=presentation/assets/background/lego-instructions.jpg&size=cover&opacity=15
+---?image=presentation/assets/background/lego-instructions.jpg&size=cover&opacity=20
 
 ### The Components
 
@@ -119,7 +119,7 @@ Breaking it down slightly differently:
 * **Data labels** and **annotations**.
 * **Facets**, that is, splitting into multiple graphs.
 
----?image=presentation/assets/background/lego-town.jpg&size=cover&opacity=15
+---?image=presentation/assets/background/lego-town.jpg&size=cover&opacity=20
 
 ### An Implementation:  ggplot2
 
@@ -139,7 +139,7 @@ It is also an opinionated library:  certain types of graphics are easy to genera
 5. Themes and Legends
 6. Facets
 
----?image=presentation/assets/background/map.jpg&size=cover&opacity=15
+---?image=presentation/assets/background/map.jpg&size=cover&opacity=20
 
 ### Mappings
 
@@ -147,7 +147,7 @@ The purpose of a visual is to display some underlying set of data.  We represent
 
 Every meaningful ggplot2 graphic will have a mapping.
 
----?image=presentation/assets/background/geometry.jpg&size=cover&opacity=15
+---?image=presentation/assets/background/geometry.jpg&size=cover&opacity=20
 
 ### Geoms
 
@@ -155,7 +155,7 @@ Geometric objects (AKA **geoms**) explain what kind of visual we want to create.
 
 The grammar of graphics is all about **composition**:  you can have multiple geometric objects on the same canvas, like including a slope line with your scatter plot.  This is a lot more powerful than having `geom_point_with_slope_line`.
 
----?image=presentation/assets/background/demo.jpg&size=cover&opacity=15
+---?image=presentation/assets/background/demo.jpg&size=cover&opacity=20
 
 ### Demo Time 
 
@@ -171,7 +171,7 @@ The grammar of graphics is all about **composition**:  you can have multiple geo
 5. Themes and Legends
 6. Facets
 
----?image=presentation/assets/background/scale.jpg&size=cover&opacity=15
+---?image=presentation/assets/background/scale.jpg&size=cover&opacity=20
 
 ### Scales
 
@@ -185,7 +185,7 @@ Aside from scaling the axis values, you can also use different features like col
 
 You can change coordinate systems from the default of Cartesian to others, including polar.  You can also flip the X and Y coordinates with `coord_flip()`, which allow you to change `geom_col()` from a column chart to a bar chart.
 
----?image=presentation/assets/background/demo.jpg&size=cover&opacity=15
+---?image=presentation/assets/background/demo.jpg&size=cover&opacity=20
 
 ### Demo Time
 
@@ -201,13 +201,13 @@ You can change coordinate systems from the default of Cartesian to others, inclu
 5. Themes and Legends
 6. Facets
 
----?image=presentation/assets/background/tags.jpg&size=cover&opacity=15
+---?image=presentation/assets/background/tags.jpg&size=cover&opacity=20
 
 ### Labels
 
 We can change the labels showing up on the X and Y axes, add a title or subtitle, create captions, and even specify the header on a legend.  The `labs()` function in ggplot2 allows us to specify all of these.
 
----?image=presentation/assets/background/annotation.jpg&size=cover&opacity=15
+---?image=presentation/assets/background/annotation.jpg&size=cover&opacity=20
 
 ### Annotations
 
@@ -215,7 +215,7 @@ Annotations let us call out specific portions of a visual.  We can, for example,
 
 The `annotate()` function handles annotations.  In addition, there are several geoms which are helpful for annotation:  `geom_text()`, `geom_hline()`, and `geom_vline()`.
 
----?image=presentation/assets/background/demo.jpg&size=cover&opacity=15
+---?image=presentation/assets/background/demo.jpg&size=cover&opacity=20
 
 ### Demo Time
 
@@ -231,7 +231,7 @@ The `annotate()` function handles annotations.  In addition, there are several g
 5. **Themes and Legends**
 6. Facets
 
----?image=presentation/assets/background/legend.jpg&size=cover&opacity=15
+---?image=presentation/assets/background/legend.jpg&size=cover&opacity=20
 
 ### Legends
 
@@ -253,7 +253,7 @@ ggplot2 has four built-in themes:  `theme_grey()` (the default), `theme_bw()`, `
 ![The minimal theme](presentation/assets/image/MinimalTheme.png)
 @divend
 
----?image=presentation/assets/background/newspapers.jpg&size=cover&opacity=15
+---?image=presentation/assets/background/newspapers.jpg&size=cover&opacity=20
 
 ### GGThemes
 
@@ -261,13 +261,13 @@ The ggthemes package includes a number of pre-built themes.  Some of my favorite
 
 ![The 538 theme](presentation/assets/image/Theme538.png)
 
----?image=presentation/assets/background/theme-park.jpg&size=cover&opacity=15
+---?image=presentation/assets/background/theme-park.jpg&size=cover&opacity=20
 
 ### Custom Themes
 
 You can even build your own themes if you have corporate or editorial standards, or if you want to spice up an existing theme.  Using the `theme()` function, you can change most visual aspects of the theme, including font shape, size, and weight; canvas coloration; tick marks; and more.
 
----?image=presentation/assets/background/demo.jpg&size=cover&opacity=15
+---?image=presentation/assets/background/demo.jpg&size=cover&opacity=20
 
 ### Demo Time
 
@@ -283,7 +283,7 @@ You can even build your own themes if you have corporate or editorial standards,
 5. Themes and Legends
 6. **Facets**
 
----?image=presentation/assets/background/facets.jpg&size=cover&opacity=15
+---?image=presentation/assets/background/facets.jpg&size=cover&opacity=20
 
 ### Facets
 
@@ -291,11 +291,11 @@ Facets allow us to display multiple graphs within one visual.  We can wrap graph
 
 Faceting is useful for separating out interactions between variables in a complex graphic.  It can also let you bring two unrelated graphics together if needed.
 
----?image=presentation/assets/background/demo.jpg&size=cover&opacity=15
+---?image=presentation/assets/background/demo.jpg&size=cover&opacity=20
 
 ### Demo Time
 
----?image=presentation/assets/background/wrappingup.jpg&size=cover&opacity=15
+---?image=presentation/assets/background/wrappingup.jpg&size=cover&opacity=20
 
 ### Wrapping Up
 
