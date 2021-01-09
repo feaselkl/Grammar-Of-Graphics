@@ -1,0 +1,388 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Catallaxy Services | Grokking the Grammar of Graphics</title>
+
+		<link rel="stylesheet" href="../reveal.js/dist/reset.css">
+		<link rel="stylesheet" href="../reveal.js/dist/reveal.css">
+		<link rel="stylesheet" href="../reveal.js/dist/theme/black.css" id="theme">
+		<link rel="stylesheet" href="../WebsiteAssets/mods.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="../reveal.js/plugin/highlight/monokai.css" id="highlight-theme">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h2>Grokking the Grammar of Graphics</h2>
+					
+					<a href="https://www.catallaxyservices.com">Kevin Feasel</a> (<a href="https://twitter.com/feaselkl">@feaselkl</a>)<br />
+					<a href="http://CSmore.info/on/ggplot">http://CSmore.info/on/ggplot</a>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Who Am I?  What Am I Doing Here?</h3>
+					<div class="container">
+						<div class="col">
+							<table class="whoami">
+								<tr>
+									<td><a href="https://csmore.info"><img src="../WebsiteAssets/Logo.png" height="100" /></a></td>
+									<td nowrap><a href="https://csmore.info">Catallaxy Services</a></td>
+								</tr>
+								<tr>
+									<td><a href="https://curatedsql.com"><img src="../WebsiteAssets/CuratedSQLLogo.png" height="100" /></a></td>
+									<td nowrap><a href="https://curatedsql.com">Curated SQL</a></td>
+								</tr>
+								<tr>
+									<td><a href="https://www.apress.com/us/book/9781484254608"><img src="../WebsiteAssets/PolyBaseRevealed.png" height="120" /></a></td>
+									<td nowrap><a href="https://www.apress.com/us/book/9781484254608">PolyBase Revealed</a></td>
+								</tr>
+							</table>
+						</div>
+						<div class="col">
+							<a href="http://www.twitter.com/feaselkl"><img src="../WebsiteAssets/HeadShot.jpg" height="358" width="315" /></a>
+							<br />
+							<a href="http://www.twitter.com/feaselkl">@feaselkl</a>
+						</div>					
+					</div>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/sound-mixer.jpg" data-background-opacity="0.4">
+					<h3>Level Setting</h3>
+					
+					<p>What I expect you to know:</p>
+
+					<ul>
+						<li>R is a language focused around performing statistical analysis, predictive modeling, and data cleansing.</li>
+						<li>R has a built-in plotting library which allows you to create rudimentary graphics.</li>
+						<li>Those graphics tend not to look very nice.</li>
+					</ul>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Level Setting</h3>
+					
+					<p>By the end of today's talk, we will be able to build the following image:</p>
+
+					<img src="presentation/assets/image/WealthAndLongevity.png" />
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Level Setting</h3>
+
+					<img src="presentation/assets/image/WealthAndLongevitySmall.png" />
+					
+					<ul>
+						<li>Multi-colored scatter plot and regression line</li>
+						<li>Title, subtitle, log axis, source ref, legend</li>
+						<li>Callout box with text and single labeled point</li>
+					</ul>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/motivation.jpg" data-background-opacity="0.4">
+					<h3>Motivation</h3>
+					
+					<p>My goals in this talk:</p>
+					
+					<ul>
+						<li>Introduce you to the Grammar of Graphics.</li>
+						<li>Introduce you to the ggplot2, an advanced library in R which implements the Grammar of Graphics.</li>
+						<li>Show you how to build professional-looking graphics iteratively.</li>
+						<li>Get you thinking about ways you could create great-looking visuals in your environment.</li>
+					</ul>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Agenda</h3>
+					
+					<ol>
+						<li class="active">Introducing the Grammar</li>
+						<li>Mappings and Geoms</li>
+						<li>Scales and Coordinates</li>
+						<li>Labels and Annotations</li>
+						<li>Themes and Legends</li>
+						<li>Facets</li>
+					</ol>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/philosophy.jpg" data-background-opacity="0.2">
+					<h3>Introducing the Grammar</h3>
+					
+					<p>Leland Wilkinson wrote The Grammar of Graphics in 1999 (<a href="https://www.springer.com/us/book/9780387245447">2nd edition</a> in 2005).</p>
+
+					<p>A grammar of graphics, like a language's grammar, gives us an idea of what is syntactically correct--even if not every graphic is semantically correct.</p>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/lego.jpg" data-background-opacity="0.2">
+					<h3>Introducing the Grammar</h3>
+					
+					<p>The core insight behind a grammar is that a great image is composable (in the programming sense):  there are components which make up this image.  Generalizing these components lets us piece together images rather than trying to produce them fully-formed.</p>
+
+					<p>This lets us use a relatively small number of components to create an indefinite number of possible graphics.</p>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>The Components</h3>
+					
+					<img src="presentation/assets/image/ggplot-grammar-of-graphics-stackpng.png" />
+				</section>
+				
+				<section data-background-image="presentation/assets/background/lego-instructions.jpg" data-background-opacity="0.4">
+					<h3>The Components</h3>
+					
+					<p>Breaking it down slightly differently:</p>
+					
+					<ul>
+						<li>The data itself, and a <strong>mapping</strong> made up aesthetics like x axis, y axis, color, fill color, and so on.</li>
+						<li>The <strong>geometric object</strong> (aka, <strong>geom</strong>) we want to draw, like histogram or line chart.</li>
+						<li><strong>Scales</strong> and <strong>coordinates</strong>.</li>
+						<li><strong>Data labels</strong> and <strong>annotations</strong>.</li>
+						<li><strong>Facets</strong>, that is, splitting into multiple graphs.</li>
+					</ul>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/lego-town.jpg" data-background-opacity="0.2">
+					<h3>An Implementation:  ggplot2</h3>
+					
+					<p>The <strong>ggplot2</strong> library in R is an implementation of the Grammar of Graphics (that's the "gg" in ggplot).  ggplot2 is an extensible, powerful library for creating graphics.</p>
+
+					<p>It is also an opinionated library:  certain types of graphics are easy to generate (such as bar and column charts, line charts, and Cleveland dot plots) but others (pie charts, radar charts) are much more difficult.</p>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Agenda</h3>
+					
+					<ol>
+						<li>Introducing the Grammar</li>
+						<li class="active">Mappings and Geoms</li>
+						<li>Scales and Coordinates</li>
+						<li>Labels and Annotations</li>
+						<li>Themes and Legends</li>
+						<li>Facets</li>
+					</ol>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/map.jpg" data-background-opacity="0.2">
+					<h3>Mappings</h3>
+					
+					<p>The purpose of a visual is to display some underlying set of data.  We represent this data, at its base, in the <strong>mapping</strong>.  The mapping contains an <strong>aesthetic</strong> which includes things like variables for the x and y coordinates, fill variable, and grouping variable.</p>
+
+					<p>Every meaningful ggplot2 graphic will have a mapping.</p>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/geometry.jpg" data-background-opacity="0.2">
+					<h3>Geoms</h3>
+					
+					<p>Geometric objects (AKA <strong>geoms</strong>) explain what kind of visual we want to create.  For example, <code>geom_col()</code> allows us to create a column (or bar) chart, <code>geom_point()</code> allows us to build a scatter plot, <code>geom_line()</code> a line chart, and so on.</p>
+
+					<p>The grammar of graphics is all about <strong>composition</strong>:  you can have multiple geometric objects on the same canvas, like including a slope line with your scatter plot.  This is a lot more powerful than having <code>geom_point_with_slope_line</code>.</p>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/demo.jpg" data-background-opacity="0.2">
+					<h3>Demo Time</h3>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Agenda</h3>
+					
+					<ol>
+						<li>Introducing the Grammar</li>
+						<li>Mappings and Geoms</li>
+						<li class="active">Scales and Coordinates</li>
+						<li>Labels and Annotations</li>
+						<li>Themes and Legends</li>
+						<li>Facets</li>
+					</ol>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/scale.jpg" data-background-opacity="0.2">
+					<h3>Scales</h3>
+					
+					<p>By default, an axis is scaled linearly.  You can manually rescale the data (for example, generating the logarithm of your values and plotting that), but ggplot2 has some built in scalars, for example, <code>scale_x_log10()</code> which performs a log base-10 transformation of your X axis. There is a similar scalar for the Y axis, too.</p>
+
+					<p>Aside from scaling the axis values, you can also use different features like color, transparency level, and size as scalars given your data.</p>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/globe.jpg" data-background-opacity="0.2">
+					<h3>Coordinates</h3>
+					
+					<p>You can change coordinate systems from the default of Cartesian to others, including polar.  You can also flip the X and Y coordinates with <code>coord_flip()</code>, which allow you to change <code>geom_col()</code> from a column chart to a bar chart.</p>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/demo.jpg" data-background-opacity="0.2">
+					<h3>Demo Time</h3>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Agenda</h3>
+					
+					<ol>
+						<li>Introducing the Grammar</li>
+						<li>Mappings and Geoms</li>
+						<li>Scales and Coordinates</li>
+						<li class="active">Labels and Annotations</li>
+						<li>Themes and Legends</li>
+						<li>Facets</li>
+					</ol>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/tags.jpg" data-background-opacity="0.2">
+					<h3>Labels</h3>
+					
+					<p>We can change the labels showing up on the X and Y axes, add a title or subtitle, create captions, and even specify the header on a legend.  The `labs()` function in ggplot2 allows us to specify all of these.</p>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/annotation.jpg" data-background-opacity="0.2">
+					<h3>Annotations</h3>
+					
+					<p>Annotations let us call out specific portions of a visual.  We can, for example, drop in explanatory text, call out a specific data point, or even add shapes to our visuals, like a rectangle to cover a subset of data points.</p>
+
+					<p>The <code>annotate()</code> function handles annotations.  In addition, there are several geoms which are helpful for annotation:  <code>geom_text()</code>, <code>geom_hline()</code>, and <code>geom_vline()</code>.</p>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/demo.jpg" data-background-opacity="0.2">
+					<h3>Demo Time</h3>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Agenda</h3>
+					
+					<ol>
+						<li>Introducing the Grammar</li>
+						<li>Mappings and Geoms</li>
+						<li>Scales and Coordinates</li>
+						<li>Labels and Annotations</li>
+						<li class="active">Themes and Legends</li>
+						<li>Facets</li>
+					</ol>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/legend.jpg" data-background-opacity="0.2">
+					<h3>Legends</h3>
+					
+					<p>We can change the legend in a graphic using the <code>guides()</code> function.  This will allow us to do things like moving the legend to a particular part of the canvas (top, bottom, left, right), make the legend vertical or horizontal, set the title, and so on.</p>
+
+					<p>When you do need to put a legend on your visual, it's good to have this kind of control to minimize how obtrusive the legend is.</p>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Built-In Themes</h3>
+					
+					<p>ggplot2 has four built-in themes:  <code>theme_grey()</code> (the default), <code>theme_bw()</code>, <code>theme_classic()</code>, and <code>theme_minimal()</code> (my preference).</p>
+
+					<div class="container">
+						<div class="col">
+							<img src="presentation/assets/image/DefaultTheme.png" />
+						</div>
+						<div class="col">
+							<img src="presentation/assets/image/MinimalTheme.png" />
+						</div>					
+					</div>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/newspapers.jpg" data-background-opacity="0.2">
+					<h3>GGThemes</h3>
+					
+					<p>The ggthemes package includes a number of pre-built themes.  Some of my favorites include <code>theme_economist()</code>, <code>theme_wsj()</code>, <code>theme_fivethirtyeight()</code>, and <code>theme_few()</code>.</p>
+					
+					<img src="presentation/assets/image/Theme538.png" />
+				</section>
+				
+				<section data-background-image="presentation/assets/background/theme-park.jpg" data-background-opacity="0.2">
+					<h3>Custom Themes</h3>
+					
+					<p>You can even build your own themes if you have corporate or editorial standards, or if you want to spice up an existing theme.  Using the <code>theme()</code> function, you can change most visual aspects of the theme, including font shape, size, and weight; canvas coloration; tick marks; and more.</p>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/demo.jpg" data-background-opacity="0.2">
+					<h3>Demo Time</h3>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Agenda</h3>
+					
+					<ol>
+						<li>Introducing the Grammar</li>
+						<li>Mappings and Geoms</li>
+						<li>Scales and Coordinates</li>
+						<li>Labels and Annotations</li>
+						<li>Themes and Legends</li>
+						<li class="active">Facets</li>
+					</ol>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/facets.jpg" data-background-opacity="0.2">
+					<h3>Facets</h3>
+					
+					<p>Facets allow us to display multiple graphs within one visual.  We can wrap graphs using the <code>facet_wrap()</code> function or lay them out on a grid using the <code>facet_grid()</code> function.</p>
+
+					<p>Faceting is useful for separating out interactions between variables in a complex graphic.  It can also let you bring two unrelated graphics together if needed.</p>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/demo.jpg" data-background-opacity="0.2">
+					<h3>Demo Time</h3>
+				</section>
+
+				<section data-background-image="presentation/assets/background/wrappingup.jpg" data-background-opacity="0.2">
+					<h3>Wrapping Up</h3>
+					
+					<p>The Grammar of Graphics is a fantastic way of abstracting complex visuals into simpler component parts.  ggplot2 is the most popular implementation of the Grammar of Graphics in R, and for good reason:  it allows us programmatically to build complex graphics in an iterative fashion with relatively few lines of code</p>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/wrappingup.jpg" data-background-opacity="0.2">
+					<h3>Wrapping Up</h3>
+					
+					<p>
+						To learn more, go here:
+						<br />
+						<a href="https://csmore.info/on/ggplot">https://CSmore.info/on/ggplot</a>
+					</p>
+					<br />
+					<p>
+						And for help, contact me:
+						<br />
+						<a href="mailto:feasel@catallaxyservices.com">feasel@catallaxyservices.com</a> | <a href="https://www.twitter.com/feaselkl">@feaselkl</a>
+					</p>
+					<br />
+					<p>
+						Catallaxy Services consulting:
+						<br />
+						<a href="https://csmore.info/contact">https://CSmore.info/on/contact</a>
+					</p>
+				</section>
+			</div>
+		</div>
+
+		<script src="../reveal.js/dist/reveal.js"></script>
+		<script src="../reveal.js/plugin/zoom/zoom.js"></script>
+		<script src="../reveal.js/plugin/notes/notes.js"></script>
+		<script src="../reveal.js/plugin/search/search.js"></script>
+		<script src="../reveal.js/plugin/markdown/markdown.js"></script>
+		<script src="../reveal.js/plugin/math/math.js"></script>
+		<script src="../reveal.js/plugin/menu/menu.js"></script>
+		<script src="../reveal.js/plugin/highlight/highlight.js"></script>
+		<script src="../reveal.js/plugin/chart/Chart.min.js"></script>
+		<script src="../reveal.js/plugin/chart/plugin.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				width: '70%',
+				controls: true,
+				progress: true,
+				center: true,
+				hash: true,
+				transition: 'fade',
+				
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight, RevealMath, RevealMenu, RevealChart ]
+			});
+		</script>
+	</body>
+</html>
